@@ -11,14 +11,14 @@ import (
 func BuildSwatches(app *AppInit) *fyne.Container {
 	canvasSwatches := make([]fyne.CanvasObject, 0, 64)
 	for i := 0; i < cap(app.Swatches); i++ {
-		initialColor := color.NRGBA{255,255,255,255} 
+		initialColor := color.NRGBA{0, 0, 0, 255}
 		s := swatch.NewSwatch(app.State, initialColor, i, func(s *swatch.Swatch) {
-			for j := 0; len(app.Swatches); j++ {
+			for j := 0; j < len(app.Swatches); j++ {
 				app.Swatches[j].Selected = false
 				canvasSwatches[j].Refresh()
 			}
 			app.State.SwatchSelected = s.SwatchIndex
-			app.state.BrushColor = s.Color
+			app.State.BrushColor = s.Color
 		})
 		if i == 0 {
 			s.Selected = true
@@ -28,5 +28,5 @@ func BuildSwatches(app *AppInit) *fyne.Container {
 		app.Swatches = append(app.Swatches, s)
 		canvasSwatches = append(canvasSwatches, s)
 	}
-	return container.NewGridWrap(fyne.NewSize(20,20), canvasSwatches...)
+	return container.NewGridWrap(fyne.NewSize(20, 20), canvasSwatches...)
 }
