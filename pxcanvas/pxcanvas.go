@@ -92,11 +92,11 @@ func (pxCanvas *PxCanvas) CreateRenderer() fyne.WidgetRenderer {
 	return renderer
 }
 
-// func (pxCanvas *PxCanvas) TryPan(previousCoord *fyne.PointEvent, ev *desktop.MouseEvent) {
-// 	if previousCoord != nil && ev.Button == desktop.MouseButtonTertiary {
-// 		pxCanvas.Pan(*previousCoord, ev.PointEvent)
-// 	}
-// }
+func (pxCanvas *PxCanvas) TryPan(previousCoord *fyne.PointEvent, ev *desktop.MouseEvent) {
+	if previousCoord != nil && ev.Button == desktop.MouseButtonTertiary {
+		pxCanvas.Pan(*previousCoord, ev.PointEvent)
+	}
+}
 
 // Brushable interface
 func (pxCanvas *PxCanvas) SetColor(c color.Color, x, y int) {
